@@ -1,0 +1,50 @@
+25-Oct-2017 09:04:39.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/9.0.1
+25-Oct-2017 09:04:39.721 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Sep 27 2017 17:31:52 UTC
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         9.0.1.0
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Mac OS X
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.11.6
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          x86_64
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_152-b16
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /Users/bens/Documents/COMP3400-A2/tomcat
+25-Oct-2017 09:04:39.722 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /Users/bens/Documents/COMP3400-A2/tomcat
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/Users/bens/Documents/COMP3400-A2/tomcat/conf/logging.properties
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/Users/bens/Documents/COMP3400-A2/tomcat
+25-Oct-2017 09:04:39.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/Users/bens/Documents/COMP3400-A2/tomcat
+25-Oct-2017 09:04:39.725 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/Users/bens/Documents/COMP3400-A2/tomcat/temp
+25-Oct-2017 09:04:39.725 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/bens/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+25-Oct-2017 09:04:39.882 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+25-Oct-2017 09:04:39.902 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+25-Oct-2017 09:04:39.911 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+25-Oct-2017 09:04:39.912 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+25-Oct-2017 09:04:39.912 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 618 ms
+25-Oct-2017 09:04:39.935 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+25-Oct-2017 09:04:39.935 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/9.0.1
+25-Oct-2017 09:04:39.942 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/axis]
+25-Oct-2017 09:04:40.737 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+25-Oct-2017 09:04:41.057 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/axis] has finished in [1,115] ms
+25-Oct-2017 09:04:41.057 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/docs]
+25-Oct-2017 09:04:41.069 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/docs] has finished in [12] ms
+25-Oct-2017 09:04:41.069 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/examples]
+25-Oct-2017 09:04:41.291 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/examples] has finished in [222] ms
+25-Oct-2017 09:04:41.292 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/host-manager]
+25-Oct-2017 09:04:41.328 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/host-manager] has finished in [37] ms
+25-Oct-2017 09:04:41.328 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/manager]
+25-Oct-2017 09:04:41.344 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/manager] has finished in [16] ms
+25-Oct-2017 09:04:41.344 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/ROOT]
+25-Oct-2017 09:04:41.354 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/Users/bens/Documents/COMP3400-A2/tomcat/webapps/ROOT] has finished in [10] ms
+25-Oct-2017 09:04:41.356 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+25-Oct-2017 09:04:41.362 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+25-Oct-2017 09:04:41.364 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 1451 ms
+25-Oct-2017 09:27:50.135 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+25-Oct-2017 09:27:50.136 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+25-Oct-2017 09:27:50.192 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8009"]
+25-Oct-2017 09:27:50.247 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+25-Oct-2017 09:27:50.279 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+25-Oct-2017 09:27:50.281 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8009"]
+25-Oct-2017 09:27:50.281 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+25-Oct-2017 09:27:50.282 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]

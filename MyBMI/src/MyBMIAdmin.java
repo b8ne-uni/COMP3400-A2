@@ -1,143 +1,134 @@
-import java.util.Iterator;
-import java.util.LinkedList;
+import localhost.axis.MyBMIAdmin_jws.MyBMIAdminServiceLocator;
+
+import java.rmi.RemoteException;
+import java.util.Scanner;
+
+import static java.lang.System.exit;
 
 public class MyBMIAdmin {
 
-    public static int CALL_COUNT = 0;
-    private static String ADMIN_USER = "admin";
-    private static String ADMIN_PASSWORD = "bodymass";
+    private static localhost.axis.MyBMIAdmin_jws.MyBMIAdmin MBA;
+    private static Scanner CONSOLE;
 
-    public static LinkedList<BMIRange> ranges = new LinkedList<>();
-
-    public boolean addRange (String user, String pwd, String lower, String upper, String name, boolean normal)
+    public static void main(String[] args)
     {
-        // Increment Call Count
-        MyBMIAdmin.CALL_COUNT = MyBMIAdmin.CALL_COUNT++;
+        // Init MyBMIServer
+        MyBMIAdminServiceLocator mbal = new MyBMIAdminServiceLocator();
+        MyBMIAdmin.MBA = mbal.getMyBMIAdmin();
 
-        // Authenticate
-        if (!this.auth(user, pwd)) {
-            return false;
-        }
+        // Init Scanner
+        MyBMIAdmin.CONSOLE = new Scanner(System.in);
 
-        if (MyBMIAdmin.ranges.size() == 0) {
-            MyBMIAdmin.ranges.push(new BMIRange(name, lower, upper, normal));
-        } else {
-            int index = -1;
-            // First iterate to search names
-            for (BMIRange current : MyBMIAdmin.ranges) {
-                if (current.getName().equals(name)) {
-                    return false;
-                }
-            }
-
-            // Next see if the new range overlaps
-            for (BMIRange current : MyBMIAdmin.ranges) {
-                if (!this.rangeOverlap(current.getLower(), current.getUpper(), lower, upper)) {
-                    return false;
-                }
-            }
-
-            // Finally, if new range is 'normal' search for existing
-            if (normal) {
-                for (BMIRange current : MyBMIAdmin.ranges) {
-                    if (current.getNormal()) {
-                        return false;
-                    }
-                }
-            }
-
-            // Safe to add new range
-            MyBMIAdmin.ranges.addLast(new BMIRange(name, lower, upper, normal));
-        }
-
-        return true;
+        // Run the menu
+        MyBMIAdmin.runMenu();
     }
 
-    public boolean deleteRange (String user, String pwd, String name)
-    {
-        // Increment Call Count
-        MyBMIAdmin.CALL_COUNT = MyBMIAdmin.CALL_COUNT++;
+    /**
+     * Menu based UI
+     */
+    private static void runMenu() {
+        // Print menu
+        System.out.println("Please enter one of the following options:");
+        System.out.println("1 - Add a BMI Range");
+        System.out.println("2 - Delete a BMI Range");
+        System.out.println("3 - Change a BMI Range name");
+        System.out.println("4 - List Web Service call count");
+        System.out.println("5 - Exit");
 
-        // Authenticate
-        if (!this.auth(user, pwd)) {
-            return false;
+        // Get input and iterate for validation
+        int choice = MyBMIAdmin.CONSOLE.nextInt();
+        while (choice < 1 || choice > 5) {
+            System.out.println("Please select 1, 2 or 3.");
+            choice = MyBMIAdmin.CONSOLE.nextInt();
         }
 
-        // Iterate ranges and delete on the fly if found
-        for (BMIRange current : MyBMIAdmin.ranges) {
-            if (current.getName().equals(name)) {
-                MyBMIAdmin.ranges.remove(current);
-                return true;
-            }
+        // Parse input selection
+        String user, pwd, lower, upper, oldName, name;
+        boolean normal;
+        switch (choice) {
+            case 1:
+                System.out.println("Username:");
+                user = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Password:");
+                pwd = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the BMI range lower value:");
+                lower = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the BMI range upper value:");
+                upper = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the BMI range name:");
+                name = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Is this the 'Normal' range? 1 - Yes, 0 - No:");
+                normal = MyBMIAdmin.CONSOLE.nextBoolean();
+                MyBMIAdmin.wsAddRange(user, pwd, lower, upper, name, normal);
+                break;
+            case 2:
+                System.out.println("Username:");
+                user = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Password:");
+                pwd = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the name of the BMI range to delete:");
+                name = MyBMIAdmin.CONSOLE.next();
+                MyBMIAdmin.wsDeleteRange(user, pwd, name);
+                break;
+            case 3:
+                System.out.println("Username:");
+                user = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Password:");
+                pwd = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the name of the BMI range to update:");
+                oldName = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Enter the new name:");
+                name = MyBMIAdmin.CONSOLE.next();
+                MyBMIAdmin.wsSetName(user, pwd, oldName, name);
+                break;
+            case 4:
+                System.out.println("Username:");
+                user = MyBMIAdmin.CONSOLE.next();
+                System.out.println("Password:");
+                pwd = MyBMIAdmin.CONSOLE.next();
+                MyBMIAdmin.wsCallCount(user, pwd);
+                break;
+            case 5:
+                System.out.println("Bye :)");
+                exit(0);
+                break;
+            default:
+                break;
         }
 
-        // Not found so return false
-        return false;
+        // Re-run menu
+        MyBMIAdmin.runMenu();
     }
 
-    public boolean setName (String user, String pwd, String oldName, String newName)
-    {
-        // Increment Call Count
-        MyBMIAdmin.CALL_COUNT = MyBMIAdmin.CALL_COUNT++;
-
-        // Authenticate
-        if (!this.auth(user, pwd)) {
-            return false;
+    private static void wsAddRange(String user, String pwd, String lower, String upper, String name, boolean normal) {
+        try {
+            MyBMIAdmin.MBA.addRange(user, pwd, lower, upper, name, normal);
+        } catch (RemoteException ex) {
+            System.out.println("There was a problem with your connection, make sure the remote server is running and try again.");
         }
-
-        // Iterate ranges and change name on the fly if found
-        for (BMIRange current : MyBMIAdmin.ranges) {
-            if (current.getName().equals(oldName)) {
-                current.setName(newName);
-                return true;
-            }
-        }
-
-        // Not found so return false
-        return false;
     }
 
-    public int callCount(String user, String pwd) {
-        // Authenticate
-        if (!this.auth(user, pwd)) {
-            return -1;
+    private static void wsDeleteRange(String user, String pwd, String name) {
+        try {
+            MyBMIAdmin.MBA.deleteRange(user, pwd, name);
+        } catch (RemoteException ex) {
+            System.out.println("There was a problem with your connection, make sure the remote server is running and try again.");
         }
-
-        return MyBMIAdmin.CALL_COUNT++;
     }
 
-    private boolean auth(String user, String pwd)
-    {
-        return user.equals(MyBMIAdmin.ADMIN_USER) && pwd.equals(MyBMIAdmin.ADMIN_PASSWORD);
+    private static void wsSetName(String user, String pwd, String oldName, String newName) {
+        try {
+            MyBMIAdmin.MBA.setName(user, pwd, oldName, newName);
+        } catch (RemoteException ex) {
+            System.out.println("There was a problem with your connection, make sure the remote server is running and try again.");
+        }
     }
 
-    private boolean rangeOverlap(String currentLower, String currentUpper, String newLower, String newUpper)
-    {
-        double cL = Double.parseDouble(currentLower);
-        double cU = Double.parseDouble(currentUpper);
-        double nL = Double.parseDouble(newLower);
-        double nU = Double.parseDouble(newUpper);
-
-        // Case 1, overlap on lower boundary
-        if (nL <= cL && nU > cL && nU <= cU) {
-            return false;
+    private static void wsCallCount(String user, String pwd) {
+        try {
+            System.out.println(MyBMIAdmin.MBA.callCount(user, pwd));
+        } catch (RemoteException ex) {
+            System.out.println("There was a problem with your connection, make sure the remote server is running and try again.");
         }
-
-        // Case 2, overlap on upper boundary
-        if (nL >= cL && nL < cU && nU >= cU) {
-            return false;
-        }
-
-        // Case 3, complete overlap
-        if (nL <= cL && nU >= cU) {
-            return false;
-        }
-
-        // Case 4, lies within
-        if (nL >= cL && nU <= cU) {
-            return false;
-        }
-
-        return true;
     }
 }

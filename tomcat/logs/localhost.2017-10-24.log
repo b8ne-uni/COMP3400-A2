@@ -1,8 +1,0 @@
-24-Oct-2017 10:27:20.154 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
-24-Oct-2017 10:27:20.154 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
-24-Oct-2017 12:43:58.928 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
-24-Oct-2017 12:43:58.928 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
-24-Oct-2017 12:44:16.721 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
-24-Oct-2017 12:44:16.721 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
-24-Oct-2017 12:44:25.913 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
-24-Oct-2017 12:44:25.913 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
