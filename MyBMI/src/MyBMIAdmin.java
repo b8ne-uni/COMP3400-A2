@@ -13,8 +13,12 @@ public class MyBMIAdmin {
     public static void main(String[] args)
     {
         // Init MyBMIServer
-        MyBMIAdminServiceLocator mbal = new MyBMIAdminServiceLocator();
-        MyBMIAdmin.MBA = mbal.getMyBMIAdmin();
+        try {
+            MyBMIAdminServiceLocator mbal = new MyBMIAdminServiceLocator();
+            MyBMIAdmin.MBA = mbal.getMyBMIAdmin();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
 
         // Init Scanner
         MyBMIAdmin.CONSOLE = new Scanner(System.in);
@@ -28,12 +32,12 @@ public class MyBMIAdmin {
      */
     private static void runMenu() {
         // Print menu
-        System.out.println("Please enter one of the following options:");
+        System.out.println("\nPlease enter one of the following options:");
         System.out.println("1 - Add a BMI Range");
         System.out.println("2 - Delete a BMI Range");
         System.out.println("3 - Change a BMI Range name");
         System.out.println("4 - List Web Service call count");
-        System.out.println("5 - Exit");
+        System.out.println("5 - Exit\n");
 
         // Get input and iterate for validation
         int choice = MyBMIAdmin.CONSOLE.nextInt();

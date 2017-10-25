@@ -106,10 +106,18 @@ public class MyBMIAdmin {
 
     private boolean rangeOverlap(String currentLower, String currentUpper, String newLower, String newUpper)
     {
+        // Parse these now as we need them in the first check
         double cL = Double.parseDouble(currentLower);
+        double nU = Double.parseDouble(newUpper);
+
+        // Exception case, current range has * upper and new range overlaps it
+        if (currentUpper.equals("*") && nU > cL) {
+            return false;
+        }
+
+        // Now parse the other params
         double cU = Double.parseDouble(currentUpper);
         double nL = Double.parseDouble(newLower);
-        double nU = Double.parseDouble(newUpper);
 
         // Case 1, overlap on lower boundary
         if (nL <= cL && nU > cL && nU <= cU) {

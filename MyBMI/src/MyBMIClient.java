@@ -18,14 +18,18 @@ public class MyBMIClient {
     public static void main(String[] args)
     {
         // Init MyBMIServer
-        MyBMIServerServiceLocator mbsl = new MyBMIServerServiceLocator();
-        MyBMIClient.MBS = mbsl.getMyBMIServer();
+        try {
+            MyBMIServerServiceLocator mbsl = new MyBMIServerServiceLocator();
+            MyBMIClient.MBS = mbsl.getMyBMIServer();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
 
         // Init Scanner
         MyBMIClient.CONSOLE = new Scanner(System.in);
 
         // First check to see if args are present
-        if (!args[0].isEmpty()) {
+        if (args.length != 0) {
             String func = args[0];
             String height, weight;
             switch (func) {
@@ -56,11 +60,11 @@ public class MyBMIClient {
      */
     private static void runMenu() {
         // Print menu
-        System.out.println("Please enter one of the following options:");
+        System.out.println("\nPlease enter one of the following options:");
         System.out.println("1 - Calculate BMI");
         System.out.println("2 - List BMI Ranges");
         System.out.println("3 - List Normal Weights for a height");
-        System.out.println("4 - Exit");
+        System.out.println("4 - Exit\n");
 
         // Get input and iterate for validation
         int choice = MyBMIClient.CONSOLE.nextInt();
