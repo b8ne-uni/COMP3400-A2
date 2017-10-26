@@ -1,5 +1,4 @@
 import localhost.axis.MyBMIAdmin_jws.MyBMIAdminServiceLocator;
-
 import java.rmi.RemoteException;
 import java.util.Scanner;
 
@@ -10,6 +9,10 @@ public class MyBMIAdmin {
     private static localhost.axis.MyBMIAdmin_jws.MyBMIAdmin MBA;
     private static Scanner CONSOLE;
 
+    /**
+     * Main Calling Function
+     * @param args
+     */
     public static void main(String[] args)
     {
         // Init MyBMIServer
@@ -47,7 +50,7 @@ public class MyBMIAdmin {
         }
 
         // Parse input selection
-        String user, pwd, lower, upper, oldName, name;
+        String user, pwd, lower, upper, oldName, name, normalString;
         boolean normal;
         switch (choice) {
             case 1:
@@ -60,9 +63,11 @@ public class MyBMIAdmin {
                 System.out.println("Enter the BMI range upper value:");
                 upper = MyBMIAdmin.CONSOLE.next();
                 System.out.println("Enter the BMI range name:");
-                name = MyBMIAdmin.CONSOLE.next();
-                System.out.println("Is this the 'Normal' range? 1 - Yes, 0 - No:");
-                normal = MyBMIAdmin.CONSOLE.nextBoolean();
+                MyBMIAdmin.CONSOLE.nextLine(); // Consume the rest of the line
+                name = MyBMIAdmin.CONSOLE.nextLine();
+                System.out.println("Is this the 'Normal' range? [Y/n]:");
+                normalString = MyBMIAdmin.CONSOLE.next();
+                normal = !normalString.equals("n");
                 MyBMIAdmin.wsAddRange(user, pwd, lower, upper, name, normal);
                 break;
             case 2:
@@ -71,7 +76,8 @@ public class MyBMIAdmin {
                 System.out.println("Password:");
                 pwd = MyBMIAdmin.CONSOLE.next();
                 System.out.println("Enter the name of the BMI range to delete:");
-                name = MyBMIAdmin.CONSOLE.next();
+                MyBMIAdmin.CONSOLE.nextLine(); // Consume the rest of the line
+                name = MyBMIAdmin.CONSOLE.nextLine();
                 MyBMIAdmin.wsDeleteRange(user, pwd, name);
                 break;
             case 3:
@@ -80,9 +86,10 @@ public class MyBMIAdmin {
                 System.out.println("Password:");
                 pwd = MyBMIAdmin.CONSOLE.next();
                 System.out.println("Enter the name of the BMI range to update:");
-                oldName = MyBMIAdmin.CONSOLE.next();
+                MyBMIAdmin.CONSOLE.nextLine(); // Consume the rest of the line
+                oldName = MyBMIAdmin.CONSOLE.nextLine();
                 System.out.println("Enter the new name:");
-                name = MyBMIAdmin.CONSOLE.next();
+                name = MyBMIAdmin.CONSOLE.nextLine();
                 MyBMIAdmin.wsSetName(user, pwd, oldName, name);
                 break;
             case 4:
@@ -104,6 +111,15 @@ public class MyBMIAdmin {
         MyBMIAdmin.runMenu();
     }
 
+    /**
+     * Consume the addRange endpoint
+     * @param user
+     * @param pwd
+     * @param lower
+     * @param upper
+     * @param name
+     * @param normal
+     */
     private static void wsAddRange(String user, String pwd, String lower, String upper, String name, boolean normal) {
         try {
             MyBMIAdmin.MBA.addRange(user, pwd, lower, upper, name, normal);
@@ -112,6 +128,12 @@ public class MyBMIAdmin {
         }
     }
 
+    /**
+     * Consume the deleteRange endpoint
+     * @param user
+     * @param pwd
+     * @param name
+     */
     private static void wsDeleteRange(String user, String pwd, String name) {
         try {
             MyBMIAdmin.MBA.deleteRange(user, pwd, name);
@@ -120,6 +142,13 @@ public class MyBMIAdmin {
         }
     }
 
+    /**
+     * Consume the setName endpoint
+     * @param user
+     * @param pwd
+     * @param oldName
+     * @param newName
+     */
     private static void wsSetName(String user, String pwd, String oldName, String newName) {
         try {
             MyBMIAdmin.MBA.setName(user, pwd, oldName, newName);
@@ -128,6 +157,11 @@ public class MyBMIAdmin {
         }
     }
 
+    /**
+     * Consume the callCount endpoint
+     * @param user
+     * @param pwd
+     */
     private static void wsCallCount(String user, String pwd) {
         try {
             System.out.println(MyBMIAdmin.MBA.callCount(user, pwd));

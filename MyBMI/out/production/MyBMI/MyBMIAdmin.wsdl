@@ -17,14 +17,14 @@
         <wsdl:part name="name" type="xsd:string"/>
         <wsdl:part name="normal" type="xsd:boolean"/>
     </wsdl:message>
+    <wsdl:message name="callCountRequest">
+        <wsdl:part name="user" type="xsd:string"/>
+        <wsdl:part name="pwd" type="xsd:string"/>
+    </wsdl:message>
     <wsdl:message name="deleteRangeRequest">
         <wsdl:part name="user" type="xsd:string"/>
         <wsdl:part name="pwd" type="xsd:string"/>
         <wsdl:part name="name" type="xsd:string"/>
-    </wsdl:message>
-    <wsdl:message name="callCountRequest">
-        <wsdl:part name="user" type="xsd:string"/>
-        <wsdl:part name="pwd" type="xsd:string"/>
     </wsdl:message>
     <wsdl:message name="setNameResponse">
         <wsdl:part name="setNameReturn" type="xsd:boolean"/>
@@ -43,13 +43,13 @@
             <wsdl:input message="impl:setNameRequest" name="setNameRequest"/>
             <wsdl:output message="impl:setNameResponse" name="setNameResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="deleteRange" parameterOrder="user pwd name">
-            <wsdl:input message="impl:deleteRangeRequest" name="deleteRangeRequest"/>
-            <wsdl:output message="impl:deleteRangeResponse" name="deleteRangeResponse"/>
-        </wsdl:operation>
         <wsdl:operation name="callCount" parameterOrder="user pwd">
             <wsdl:input message="impl:callCountRequest" name="callCountRequest"/>
             <wsdl:output message="impl:callCountResponse" name="callCountResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRange" parameterOrder="user pwd name">
+            <wsdl:input message="impl:deleteRangeRequest" name="deleteRangeRequest"/>
+            <wsdl:output message="impl:deleteRangeResponse" name="deleteRangeResponse"/>
         </wsdl:operation>
         <wsdl:operation name="addRange" parameterOrder="user pwd lower upper name normal">
             <wsdl:input message="impl:addRangeRequest" name="addRangeRequest"/>
@@ -67,21 +67,21 @@
                 <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/MyBMIAdmin.jws" use="encoded"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="deleteRange">
-            <wsdlsoap:operation soapAction=""/>
-            <wsdl:input name="deleteRangeRequest">
-                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
-            </wsdl:input>
-            <wsdl:output name="deleteRangeResponse">
-                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/MyBMIAdmin.jws" use="encoded"/>
-            </wsdl:output>
-        </wsdl:operation>
         <wsdl:operation name="callCount">
             <wsdlsoap:operation soapAction=""/>
             <wsdl:input name="callCountRequest">
                 <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
             </wsdl:input>
             <wsdl:output name="callCountResponse">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/MyBMIAdmin.jws" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteRange">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="deleteRangeRequest">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="deleteRangeResponse">
                 <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/axis/MyBMIAdmin.jws" use="encoded"/>
             </wsdl:output>
         </wsdl:operation>

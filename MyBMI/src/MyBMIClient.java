@@ -104,7 +104,7 @@ public class MyBMIClient {
     }
 
     /**
-     * Call calcBMI endpoint
+     * Consume the calcBMI endpoint
      * @param weight
      * @param height
      */
@@ -117,7 +117,7 @@ public class MyBMIClient {
     }
 
     /**
-     * Call listRanges endpoint
+     * Consume the listRanges endpoint
      */
     private static void wsListRanges() {
         try {
@@ -128,7 +128,7 @@ public class MyBMIClient {
     }
 
     /**
-     * Call listWeights endpoint
+     * Consume the listWeights endpoint
      * @param height
      */
     private static void wsListWeights(String height) {
